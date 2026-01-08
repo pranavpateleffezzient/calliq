@@ -1,0 +1,13 @@
+{
+  "name": "mobile",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@react-native/metro-config": "*",
+    "metro-config": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-encrypted-storage": "^4.0.3",
+    "react-native-svg": "*"
+  }
+}
