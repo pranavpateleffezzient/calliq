@@ -5,7 +5,19 @@
  Delete this file and get started with your project!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
+import {loginApi} from "@core/api"
 export function NxWelcome({ title }: { title: string }) {
+
+ const login = async () => {
+    const data = {
+      email: 'ashish22@test.com',
+      password: '98765',
+    };
+
+    const response = await loginApi(data);
+    console.log("response--------------",JSON.stringify(response));
+  };
+
   return (
     <>
       <style
@@ -454,7 +466,7 @@ export function NxWelcome({ title }: { title: string }) {
                 </svg>
                 <span>You&apos;re up and running</span>
               </h2>
-              <a href="#commands"> What&apos;s next? </a>
+              <a onClick={login} > What&apos;s next? </a>
             </div>
             <div className="logo-container">
               <svg

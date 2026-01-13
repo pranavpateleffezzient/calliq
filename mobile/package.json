@@ -4,10 +4,16 @@
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
+    "@tamagui/animations-react-native": "^1.144.1",
+    "@tamagui/config": "^1.144.1",
+    "@tamagui/core": "^1.144.1",
+    "@tamagui/lucide-icons": "^1.144.1",
     "metro-config": "*",
     "react": "*",
     "react-native": "*",
+    "react-native-async-storage": "^0.0.1",
     "react-native-encrypted-storage": "^4.0.3",
-    "react-native-svg": "*"
+    "react-native-svg": "*",
+    "tamagui": "^1.144.1"
   }
 }
