@@ -22,7 +22,7 @@ import { createTamagui, createTokens } from '@tamagui/core'
     // Background colors
     background: '#FFFFFF',
 
-     blue1: '#f0f9ff',
+    blue1: '#f0f9ff',
     blue2: '#e0f2fe',
     blue3: '#bae6fd',
     blue4: '#7dd3fc',
