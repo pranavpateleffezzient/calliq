@@ -79,8 +79,8 @@ export const buttonPresets = {
   
   // PRESET 6: Small Size
   small: {
-    paddingHorizontal: '$sm',
-    paddingVertical: '$xs',
+    paddingHorizontal: '$4',
+    paddingVertical: '$2',
     fontSize: 12,
   },
   
@@ -93,8 +93,8 @@ export const buttonPresets = {
   
   // PRESET 8: Large Size
   large: {
-    paddingHorizontal: '$lg',
-    paddingVertical: '$md',
+    paddingHorizontal: '10',
+    paddingVertical: '20',
     fontSize: 16,
   },
   

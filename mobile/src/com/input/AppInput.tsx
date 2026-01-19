@@ -245,9 +245,9 @@ export const AppInput = forwardRef<any, AppInputProps>((props, ref) => {
           {isPassword && (
             <View onPress={togglePasswordVisibility} cursor="pointer">
               {showPassword ? (
-                <EyeOff color="$gray7" size="$1" />
+                <EyeOff color="$gray7" size="$5" />
               ) : (
-                <Eye color="$gray7" size="$1" />
+                <Eye color="$gray7" size="$5" />
               )}
             </View>
           )}

@@ -10,7 +10,7 @@ export const CustomButton = styled(TamaguiButton, {
   variants: {
     size: {
       xs: {
-        height: 28,
+        paddingVertical: 28,
         paddingHorizontal: 12,
         borderRadius: 6,
         fontSize: 12,

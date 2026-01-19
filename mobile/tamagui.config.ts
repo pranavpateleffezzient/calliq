@@ -99,7 +99,7 @@ import { createTamagui, createTokens } from '@tamagui/core'
     9: 36,
     10: 40,
   },
-  
+    
   radius: {
     0: 0,
     1: 3,
@@ -157,3 +157,90 @@ declare module 'tamagui' {
 }
  
 export default tamaguiConfig
+// tamagui.config.ts
+// import { createTamagui, createTokens } from '@tamagui/core'
+
+// // 1. Create tokens (global variables for colors, sizes, etc.)
+// const tokens = createTokens({
+//   // Color Tokens - Define ALL colors here
+//   color: {
+//     // Blue shades for primary buttons
+//     primary: '#007AFF',     // Main primary color
+//     primaryDark: '#0056CC', // Darker for hover
+//     primaryLight: '#409CFF',// Lighter
+    
+//     // Gray shades for secondary buttons
+//     gray1: '#F2F2F7',
+//     gray2: '#E5E5EA',
+//     gray3: '#D1D1D6',
+//     gray4: '#C7C7CC',
+//     gray5: '#AEAEB2',
+//     gray6: '#8E8E93',
+    
+//     // Red for danger buttons
+//     danger: '#FF3B30',
+//     dangerDark: '#D70015',
+    
+//     // White and black
+//     white: '#FFFFFF',
+//     black: '#000000',
+    
+//     // Background colors
+//     background: '#FFFFFF',
+//   },
+  
+//   // Size Tokens - For padding, height, etc.
+//   size: {
+//     xs: 8,    // Extra small
+//     sm: 12,   // Small
+//     md: 16,   // Medium (default)
+//     lg: 20,   // Large
+//     xl: 24,   // Extra large
+//   },
+  
+//   // Radius Tokens - For border-radius
+//   radius: {
+//     none: 0,
+//     sm: 4,    // Small radius
+//     md: 8,    // Medium radius (default)
+//     lg: 12,   // Large radius
+//     full: 9999, // Full circle
+//   },
+  
+//   // Space Tokens - For margins, gaps
+//   space: {
+//     xs: 4,
+//     sm: 8,
+//     md: 16,
+//     lg: 24,
+//     xl: 32,
+//   }
+// })
+
+// // 2. Create the Tamagui configuration
+// const config = createTamagui({
+//   tokens,
+  
+//   // 3. Define themes (light/dark mode)
+//   themes: {
+//     light: {
+//       bg: tokens.color.background,
+//       text: tokens.color.black,
+//     },
+//     dark: {
+//       bg: tokens.color.black,
+//       text: tokens.color.white,
+//     },
+//   },
+  
+//   // 4. Set default props for ALL buttons in app
+//   defaultProps: {
+//     Button: {
+//       borderRadius: tokens.radius.md, // Default radius
+//       fontWeight: '600',              // Default font weight
+//       pressStyle: { opacity: 0.8 },   // When pressed
+//     },
+//   },
+// })
+
+// export default config

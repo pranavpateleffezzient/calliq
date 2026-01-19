@@ -68,7 +68,7 @@ export const inputPresets = {
   underline: {
     backgroundColor: 'transparent',
     borderWidth: 0,
-    borderBottomWidth: 2,
+    borderBottomWidth: 12,
     borderColor: '$gray4',
     color: '$gray12',
     placeholderTextColor: '$gray6',

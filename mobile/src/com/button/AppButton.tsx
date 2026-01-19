@@ -2,7 +2,7 @@
 import React from 'react'
 import { CustomButton } from './CustomButton'
 import { buttonPresets, ButtonPreset } from '../button/buttonPresets'
-import type { ButtonProps } from 'tamagui'
+import { ButtonProps,  Button as TamaguiButton, } from 'tamagui'
 
 // Define our component's props
 interface AppButtonProps extends ButtonProps {
@@ -52,17 +52,24 @@ export const AppButton: React.FC<AppButtonProps> = (props) => {
   const buttonContent = loading ? 'Loading...' : children
   
   return (
-    <CustomButton
-      // First apply preset styles
+    // <CustomButton
+    //   // First apply preset styles
+    //   {...presetStyles}
+      
+    //   // Then apply any custom props (can override preset)
+    //   {...restProps}
+      
+    //   // Disable button if loading
+    //   disabled={loading || restProps.disabled}
+    // >
+    //   {buttonContent}
+    // </CustomButton>
+      <TamaguiButton
       {...presetStyles}
-      
-      // Then apply any custom props (can override preset)
       {...restProps}
-      
-      // Disable button if loading
       disabled={loading || restProps.disabled}
     >
       {buttonContent}
-    </CustomButton>
+    </TamaguiButton>
   )
 }
