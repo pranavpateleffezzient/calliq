@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './app/App';
+import Dashboard from './app/Dashboard';
 
-AppRegistry.registerComponent('Mobile', () => App);
+AppRegistry.registerComponent('Mobile', () => Dashboard);

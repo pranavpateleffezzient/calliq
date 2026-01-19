@@ -4,10 +4,10 @@
 export const inputPresets = {
   // PRESET 1: Default Input (Main input style)
   default: {
-    backgroundColor: '$gray1',
+    backgroundColor: '$gray13',
     borderWidth: 1,
-    borderColor: '$gray3',
-    color: '$gray12',
+    borderColor: '$gray13',
+    color: '$gray13',
     placeholderTextColor: '$gray6',
     borderRadius: '$radius.2',
     

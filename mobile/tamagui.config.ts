@@ -6,7 +6,7 @@ import { createTamagui, createTokens } from '@tamagui/core'
   // Color Tokens - Define ALL colors here
   color: {
     // Blue shades for primary buttons
-    primary: '#007AFF',     // Main primary color
+    primary: '#0A4EDC',     // Main primary color
     primaryDark: '#0056CC', // Darker for hover
     primaryLight: '#409CFF',// Lighter
     
@@ -46,6 +46,7 @@ import { createTamagui, createTokens } from '@tamagui/core'
     gray10: '#18181b',
     gray11: '#0f0f11',
     gray12: '#030303',
+    gray13: '#B0B7C3',
     
     // Red shades
     red1: '#fef2f2',
