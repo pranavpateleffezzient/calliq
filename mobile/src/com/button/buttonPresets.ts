@@ -86,15 +86,15 @@ export const buttonPresets = {
   
   // PRESET 7: Medium Size (default)
   medium: {
-    paddingHorizontal: '$md',
-    paddingVertical: '$sm',
+    paddingHorizontal: '$4',
+    paddingVertical: '$4',
     fontSize: 14,
   },
   
   // PRESET 8: Large Size
   large: {
-    paddingHorizontal: '10',
-    paddingVertical: '20',
+    paddingHorizontal: '$4',
+    paddingVertical: '$6',
     fontSize: 16,
   },
   
@@ -111,7 +111,7 @@ export const buttonPresets = {
   
   // PRESET 11: Rounded Button
   rounded: {
-    borderRadius: '$full',
+    borderRadius: '$5',
   },
   
   // PRESET 12: Square Button

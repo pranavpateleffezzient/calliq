@@ -171,7 +171,8 @@ export const AppInput = forwardRef<any, AppInputProps>((props, ref) => {
           htmlFor={restProps.id || label} 
           fontSize="$3" 
           fontWeight="500"
-          color="$gray11"
+          color="$gray6"
+          marginTop={"$2"}
         >
           {label}
           {required && <Text color="$red6"> *</Text>}

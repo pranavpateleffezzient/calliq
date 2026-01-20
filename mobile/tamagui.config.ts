@@ -1,6 +1,7 @@
 // import { createTamagui } from 'tamagui'
 // import { tokens } from '@tamagui/config/v3'
 import { createTamagui, createTokens } from '@tamagui/core'
+import { createAnimations } from '@tamagui/animations-react-native'
 
  const tokens = createTokens({
   // Color Tokens - Define ALL colors here
@@ -129,8 +130,24 @@ import { createTamagui, createTokens } from '@tamagui/core'
     10: 40,
   },
 })
+const animations = createAnimations({
+  fast: {
+    type: 'timing',
+    duration: 150,
+  },
+  medium: {
+    type: 'timing',
+    duration: 300,
+  },
+  slow: {
+    type: 'timing',
+    duration: 500,
+  },
+})
+
 export const tamaguiConfig = createTamagui({
     tokens,
+    animations,
  
     themes: {
     light: {
@@ -149,6 +166,8 @@ export const tamaguiConfig = createTamagui({
       pressStyle: { opacity: 0.8 },   // When pressed
     },
   },
+
+  
 })
  
 export type AppTamaguiConfig = typeof tamaguiConfig

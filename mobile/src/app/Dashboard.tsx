@@ -14,8 +14,12 @@ import {
 } from 'react-native';
 import { AppInput } from '../com/input/AppInput';
 const { width, height } = Dimensions.get('window');
-import tamaguiConfig from '../../tamagui.config'
-import { TamaguiProvider } from '@tamagui/core'
+import tamaguiConfig from '../../tamagui.config';
+import { TamaguiProvider } from '@tamagui/core';
+import { AppButton } from '../com/button/AppButton';
+import { ArrowLeft } from '@tamagui/lucide-icons';
+import { Image } from 'tamagui';
+
 export default function Dashboard() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,63 +30,107 @@ export default function Dashboard() {
   };
   return (
     <TamaguiProvider config={tamaguiConfig}>
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="$primary" />
+      <View style={styles.container}>
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle="light-content"
+        />
 
-      {/* Blue Header */}
-      <View style={styles.header}>
-        <Text style={styles.backArrow}>←</Text>
-        <Text style={styles.headerTitle}>Sign in</Text>
+        {/* Blue Header */}
+        <View style={styles.header}>
+          {/* <Text style={styles.backArrow}>←</Text>
+          <Text style={styles.headerTitle}>Sign in</Text> */}
 
-        {/* Decorative circles */}
-        <View style={styles.circleLarge} />
-        <View style={styles.circleSmall} />
-      </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 20,
+            }}
+          >
+            <Image
+              source={require('../assets/only_logo_1024.png')}
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius:25
+              }}
+            />
+          </View>
 
-      {/* White Card */}
-      <View style={styles.card}>
-        <Text style={styles.welcome}>Welcome Back</Text>
-        <Text style={styles.subText}>Hello there, sign in to continue!</Text>
+          {/* Decorative circles */}
+          <View style={styles.circleLarge} />
+          <View style={styles.circleSmall} />
+        </View>
 
-        {/* Username */}
-        <Text style={styles.label}>Username or email</Text>
-        <TextInput
+        {/* White Card */}
+        <View style={styles.card}>
+          <Text style={styles.welcome}>Welcome Back</Text>
+          <Text style={styles.subText}>Hello there, sign in to continue!</Text>
+
+          {/* Username */}
+          {/* <Text style={styles.label}>Username or email</Text> */}
+          {/* <TextInput
           placeholder="Enter your username or email"
           placeholderTextColor="#B0B7C3"
           style={styles.input}
-        />
+        /> */}
 
-        <AppInput
-            preset="default"
-            placeholder="Filled input"
+          <AppInput
+            preset={['default', 'fullWidth']}
+            placeholder="Enter your username or email"
+            marginTop={'$2'}
+            paddingHorizontal={'$4'}
+            fontSize={15}
+            label="Username or email"
+            required
           />
 
-        {/* Password */}
-        <Text style={[styles.label, { marginTop: 16 }]}>Password</Text>
+          <AppInput
+            preset={['default', 'fullWidth']}
+            placeholder="Enter your password"
+            marginTop={'$2'}
+            paddingHorizontal={'$4'}
+            fontSize={15}
+            label="Password"
+            required
+          />
+
+          {/* Password */}
+          {/* <Text style={[styles.label, { marginTop: 16 }]}>Password</Text>
         <TextInput
           placeholder="Enter your password"
           placeholderTextColor="#B0B7C3"
           secureTextEntry
           style={styles.input}
-        />
+        /> */}
 
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
+          {/* Sign In Button */}
+          {/* <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableOpacity> */}
 
-        {/* Sign In Button */}
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Sign in</Text>
-        </TouchableOpacity>
+          <AppButton
+            preset={['primary', 'medium', 'rounded']}
+            style={{ marginTop: 40 }}
+          >
+            Sign in
+          </AppButton>
+            <AppButton
+            preset={['primary', 'medium', 'rounded']}
+            style={{ marginTop: 10 }}
+          >
+           Google Sign in
+          </AppButton>
 
-        {/* Footer */}
-        <Text style={styles.footerText}>
-          Don’t have an account? <Text style={styles.signup}>Sign up</Text>
-        </Text>
+          {/* Footer */}
+          <Text style={styles.footerText}>
+            Don’t have an account? <Text style={styles.signup}>Sign up</Text>
+          </Text>
+        </View>
       </View>
-    </View>
     </TamaguiProvider>
-
   );
 }
 
@@ -95,7 +143,7 @@ const styles = StyleSheet.create({
   /* Header */
   header: {
     height: 230,
-    paddingTop: 50,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 50,
     paddingHorizontal: 20,
     backgroundColor: '#0A4EDC',
     overflow: 'hidden',
