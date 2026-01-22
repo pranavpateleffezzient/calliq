@@ -116,7 +116,7 @@ export const buttonPresets = {
   
   // PRESET 12: Square Button
   square: {
-    borderRadius: '$sm',
+    borderRadius: '$5',
   },
 }
 

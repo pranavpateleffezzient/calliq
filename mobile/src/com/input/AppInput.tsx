@@ -11,6 +11,7 @@ import { CustomInput, CustomTextArea } from './CustomInput'
 import { inputPresets, InputPreset, ValidationState } from '../input/inputPresets'
 import type { InputProps, TextAreaProps } from 'tamagui'
 import { AlertCircle, CheckCircle, Eye, EyeOff } from '@tamagui/lucide-icons'
+import fonts from 'mobile/constant/font'
 
 // Define our component's props
 interface AppInputProps extends InputProps {
@@ -173,6 +174,7 @@ export const AppInput = forwardRef<any, AppInputProps>((props, ref) => {
           fontWeight="500"
           color="$gray6"
           marginTop={"$2"}
+          fontFamily={fonts.med}
         >
           {label}
           {required && <Text color="$red6"> *</Text>}

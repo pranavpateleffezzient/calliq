@@ -1,43 +1,34 @@
-import React, { useState,useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
+  Text,
   StyleSheet,
   Platform,
   StatusBar,
   Dimensions,
+  Animated,
+  Easing,
 } from 'react-native';
 import { AppInput } from '../com/input/AppInput';
 const { width, height } = Dimensions.get('window');
 import tamaguiConfig from '../../tamagui.config';
 import { TamaguiProvider } from '@tamagui/core';
 import { AppButton } from '../com/button/AppButton';
-import { ArrowLeft } from '@tamagui/lucide-icons';
-import { Image,Text, } from 'tamagui';
-import fonts from '../../constant/font'
-import { Animated, Easing } from 'react-native'
+import { Image } from 'tamagui';
+import fonts from 'mobile/constant/font';
 
-export default function Dashboard() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export default function Companyscreen() {
   const opacity = useRef(new Animated.Value(0)).current;
-
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log('Logging in with:', { username, password });
-  };
-
-    useEffect(() => {
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 3000,
-        easing: Easing.out(Easing.ease),
-        useNativeDriver: true,
-      }).start();
-    }, []);
-
+  useEffect(() => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 3000,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: true,
+    }).start();
+  }, []);
   return (
     <TamaguiProvider config={tamaguiConfig}>
-
       <View style={styles.container}>
         <StatusBar
           translucent
@@ -48,7 +39,7 @@ export default function Dashboard() {
         {/* Blue Header */}
         <View style={styles.header}>
           {/* <Text style={styles.backArrow}>←</Text>
-          <Text style={styles.headerTitle}>Sign in</Text> */}
+             <Text style={styles.headerTitle}>Sign in</Text> */}
 
           <View
             style={{
@@ -62,7 +53,7 @@ export default function Dashboard() {
               style={{
                 width: 100,
                 height: 100,
-                borderRadius:25
+                borderRadius: 25,
               }}
             />
           </View>
@@ -74,80 +65,86 @@ export default function Dashboard() {
 
         {/* White Card */}
         <View style={styles.card}>
-                <Animated.View
-              style={{
-                flex: 1,
-                opacity,
-              }}
-            >
-
-                        <Text style={styles.welcome} >Welcome Back</Text>
-          <Text style={styles.subText}>Hello there, sign in to continue!</Text>
-
-
-          <AppInput
-            preset={['default', 'fullWidth']}
-            placeholder="Enter your username or email"
-            marginTop={'$2'}
-            paddingHorizontal={'$4'}
-            fontSize={15}
-            label="Username or email"
-            required
-            fontFamily={fonts.reg}
-          />
-
-          <AppInput
-            preset={['default', 'fullWidth']}
-            placeholder="Enter your password"
-            marginTop={'$2'}
-            paddingHorizontal={'$4'}
-            fontSize={15}
-            label="Password"
-            required
-          />
-
-
-          <AppButton
-            preset={['primary', 'medium', 'rounded']}
-            style={{ marginTop: 40 }}
-            fontFamily={fonts.bol}
+          <Animated.View
+            style={{
+              flex: 1,
+              opacity,
+            }}
           >
-            Sign in
-          </AppButton>
+            <Text style={styles.welcome}>Sign up</Text>
+            <Text style={styles.subText}>
+              Hello there, sign up for create new account!
+            </Text>
+            <AppInput
+              preset={['default', 'fullWidth']}
+              placeholder="Enter your Name"
+              marginTop={'$2'}
+              paddingHorizontal={'$4'}
+              fontSize={15}
+              label="Name"
+              required
+              fontFamily={fonts.reg}
+            />
+            <AppInput
+              preset={['default', 'fullWidth']}
+              placeholder="Enter your username or email"
+              marginTop={'$2'}
+              paddingHorizontal={'$4'}
+              fontSize={15}
+              label="Username or email"
+              required
+              fontFamily={fonts.reg}
+            />
+
+            <AppInput
+              preset={['default', 'fullWidth']}
+              placeholder="Enter your password"
+              marginTop={'$2'}
+              paddingHorizontal={'$4'}
+              fontSize={15}
+              label="Password"
+              required
+            />
+
             <AppButton
-            preset={['outline', 'medium', 'rounded']}
-            style={{ marginTop: 10 }}
-             fontFamily={fonts.bol}
-               icon={
-    <Image
-      source={require('../assets/google.png')}
-      style={{ width: 18, height: 18 }}
-      resizeMode="contain"
-    />
-  }
-          >
-           Google Sign in
-          </AppButton>
+              preset={['primary', 'medium', 'rounded']}
+              style={{ marginTop: 40 }}
+              fontFamily={fonts.bol}
+            >
+              Sign up
+            </AppButton>
+            {/* <AppButton
+              preset={['outline', 'medium', 'rounded']}
+              style={{ marginTop: 10 }}
+              fontFamily={fonts.bol}
+              icon={
+                <Image
+                  source={require('../assets/google.png')}
+                  style={{ width: 18, height: 18 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              Google Sign in
+            </AppButton> */}
 
-          {/* Footer */}
-          <Text style={styles.footerText} fontFamily={fonts.reg}>
-            Don’t have an account? <Text style={styles.signup}>Sign up</Text>
-          </Text>
-            </Animated.View>
-
+            {/* Footer */}
+            <Text style={styles.footerText} fontFamily={fonts.reg}>
+              If you have an account? <Text style={styles.signup}>Sign in</Text>
+            </Text>
+          </Animated.View>
         </View>
       </View>
     </TamaguiProvider>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0A4EDC',
   },
 
-
+  /* Header */
   header: {
     height: 200,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 50,
@@ -162,7 +159,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: '#fff',
     fontSize: 24,
-    fontWeight: '600',
     marginTop: 20,
   },
 
@@ -196,15 +192,14 @@ const styles = StyleSheet.create({
 
   welcome: {
     fontSize: 22,
+    fontWeight: '700',
     color: '#0A1F44',
-    fontFamily:fonts.bol
   },
   subText: {
     fontSize: 14,
     color: '#7C8DB5',
     marginTop: 6,
     marginBottom: 24,
-    fontFamily:fonts.reg
   },
 
   label: {

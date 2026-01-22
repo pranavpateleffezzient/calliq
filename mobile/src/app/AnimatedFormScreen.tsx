@@ -60,13 +60,15 @@
 
 //   )
 // }
-import React, { useEffect, useRef } from 'react'
-import { Animated, Easing } from 'react-native'
-import { YStack, Input, Button, Text } from 'tamagui'
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing } from 'react-native';
+import { YStack, Input, Button, Text } from 'tamagui';
 import { TamaguiProvider } from '@tamagui/core';
 import tamaguiConfig from '../../tamagui.config';
+import fonts from '../../constant/font'
+
 export default function AnimatedFormScreen() {
-  const opacity = useRef(new Animated.Value(0)).current
+  const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(opacity, {
@@ -74,38 +76,47 @@ export default function AnimatedFormScreen() {
       duration: 3000,
       easing: Easing.out(Easing.ease),
       useNativeDriver: true,
-    }).start()
-  }, [])
+    }).start();
+  }, []);
 
   return (
     <TamaguiProvider config={tamaguiConfig}>
-  <Animated.View
-      style={{
-        flex: 1,
-        opacity,
-      }}
-    >
-      <YStack
-        flex={1}
-        backgroundColor="##fff"
-        padding={16}
-        justifyContent="center"
-        space={12}
+      <Animated.View
+        style={{
+          flex: 1,
+          opacity,
+        }}
       >
-        <Text fontSize={28} fontWeight="700" textAlign="center" color="#000">
-          Create Account
-        </Text>
+        <YStack
+          flex={1}
+          backgroundColor="##fff"
+          padding={16}
+          justifyContent="center"
+          space={12}
+        >
+          <Text fontSize={28} textAlign="center" color="#000">
+            Create Account
+          </Text>
 
-        <Input placeholder="Name" size={4} />
-        <Input placeholder="Email" size={4} keyboardType="email-address" />
-        <Input placeholder="Password" size={4} secureTextEntry />
+          <Input placeholder="Name" size={4} />
+          <Input placeholder="Email" size={4} keyboardType="email-address" />
+          <Input placeholder="Password" size={4} secureTextEntry />
 
-        <Button size={4} marginTop={16}>
-          Submit
-        </Button>
-      </YStack>
-    </Animated.View>
+          <Button size={4} marginTop={16}>
+            Submit
+          </Button>
+       <Text style={{ fontFamily: fonts.reg, fontSize: 18 }}>
+            Instrument Sans Regular
+          </Text>
+
+          <Text style={{ fontFamily: fonts.bol, fontSize: 18 }}>
+            Instrument Sans Bold
+          </Text>
+{/* <Text fontFamily={font.reg}  fontSize={18}>
+  Instrument Sans SemiBold
+</Text> */}
+        </YStack>
+      </Animated.View>
     </TamaguiProvider>
-  
-  )
+  );
 }
