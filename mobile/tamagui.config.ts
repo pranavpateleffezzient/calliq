@@ -2,90 +2,91 @@
 // import { tokens } from '@tamagui/config/v3'
 import { createTamagui, createTokens } from '@tamagui/core'
 import { createAnimations } from '@tamagui/animations-react-native'
-
+import color from 'mobile/constant/colors';
  const tokens = createTokens({
   // Color Tokens - Define ALL colors here
   color: {
     // Blue shades for primary buttons
-    primary: '#0A4EDC',     // Main primary color
-    primaryDark: '#0056CC', // Darker for hover
-    primaryLight: '#409CFF',// Lighter
+    primary: color.primary,     // Main primary color
+    primaryDark: color.primaryDark, // Darker for hover
+    primaryLight: color.primaryLight,// Lighter
     
     
     // Red for danger buttons
-    danger: '#FF3B30',
-    dangerDark: '#D70015',
+    danger: color.danger,
+    dangerDark: color.dangerDark,
     
     // White and black
-    white: '#FFFFFF',
-    black: '#000000',
+    white: color.white,
+    black: color.black,
     
     // Background colors
-    background: '#FFFFFF',
+    background: color.background,
 
-    blue1: '#f0f9ff',
-    blue2: '#e0f2fe',
-    blue3: '#bae6fd',
-    blue4: '#7dd3fc',
-    blue5: '#38bdf8',
-    blue6: '#0ea5e9',
-    blue7: '#0284c7',
-    blue8: '#0369a1',
-    blue9: '#075985',
-    blue10: '#0c4a6e',
+    blue1:color.blue1,
+    blue2:color.blue2,
+    blue3:color.blue3,
+    blue4:color.blue4,
+    blue5:color.blue5,
+    blue6:color.blue6,
+    blue7:color.blue7,
+    blue8:color.blue8,
+    blue9:color.blue9,
+    blue10:color.blue10,
+    
     
     // Gray shades
-    gray1: '#fafafa',
-    gray2: '#f4f4f5',
-    gray3: '#e4e4e7',
-    gray4: '#d4d4d8',
-    gray5: '#a1a1aa',
-    gray6: '#71717a',
-    gray7: '#52525b',
-    gray8: '#3f3f46',
-    gray9: '#27272a',
-    gray10: '#18181b',
-    gray11: '#0f0f11',
-    gray12: '#030303',
-    gray13: '#B0B7C3',
+    gray1: color.gray1,
+    gray2: color.gray2,
+    gray3: color.gray3,
+    gray4: color.gray4,
+    gray5: color.gray5,
+    gray6: color.gray6,
+    gray7: color.gray7,
+    gray8: color.gray8,
+    gray9: color.gray9,
+    gray10: color.gray10,
+    gray11: color.gray11,
+    gray12: color.gray12,
+    gray13: color.gray13,
     
     // Red shades
-    red1: '#fef2f2',
-    red2: '#fee2e2',
-    red3: '#fecaca',
-    red4: '#fca5a5',
-    red5: '#f87171',
-    red6: '#ef4444',
-    red7: '#dc2626',
-    red8: '#b91c1c',
-    red9: '#991b1b',
-    red10: '#7f1d1d',
-    
+    red1: color.red1,
+    red2: color.red2,
+    red3: color.red3,
+    red4: color.red4,
+    red5: color.red5,
+    red6: color.red6,
+    red7: color.red7,
+    red8: color.red8,
+    red9: color.red9,
+    red10: color.red10,
+
     // Green shades
-    green1: '#f0fdf4',
-    green2: '#dcfce7',
-    green3: '#bbf7d0',
-    green4: '#86efac',
-    green5: '#4ade80',
-    green6: '#22c55e',
-    green7: '#16a34a',
-    green8: '#15803d',
-    green9: '#166534',
-    green10: '#14532d',
+    green1: color.green1,
+    green2: color.green2,
+    green3: color.green3,
+    green4: color.green4,
+    green5: color.green5,
+    green6: color.green6,
+    green7: color.green7,
+    green8: color.green8,
+    green9: color.green9,
+    green10: color.green10,
+
     
     // Orange shades
-    orange1: '#fff7ed',
-    orange2: '#ffedd5',
-    orange3: '#fed7aa',
-    orange4: '#fdba74',
-    orange5: '#fb923c',
-    orange6: '#f97316',
-    orange7: '#ea580c',
-    orange8: '#c2410c',
-    orange9: '#9a3412',
-    orange10: '#7c2d12',
-    
-    // Background
+    orange1: color.orange1,
+    orange2: color.orange2,
+    orange3: color.orange3,
+    orange4: color.orange4,
+    orange5: color.orange5,
+    orange6: color.orange6,
+    orange7: color.orange7,
+    orange8: color.orange8,
+    orange9: color.orange9,
+    orange10: color.orange10,
+
   },
   
   size: {

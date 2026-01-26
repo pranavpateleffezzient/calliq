@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
 // import Dashboard from './app/Dashboard';
- import sigup from './app/sigup';
+ import call_dialer from './app/call_dialer';
 
-AppRegistry.registerComponent('Mobile', () => sigup);
+AppRegistry.registerComponent('Mobile', () => call_dialer);

@@ -13,6 +13,8 @@
     "react-native": "*",
     "react-native-async-storage": "^0.0.1",
     "react-native-encrypted-storage": "^4.0.3",
+    "react-native-permissions": "^5.4.4",
+    "react-native-phone-call": "^1.2.0",
     "react-native-svg": "*",
     "tamagui": "^1.144.1"
   }

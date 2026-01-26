@@ -9,13 +9,15 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import { AppInput } from '../com/input/AppInput';
+// import { AppInput } from '../com/input/AppInput';
 const { width, height } = Dimensions.get('window');
 import tamaguiConfig from '../../tamagui.config';
 import { TamaguiProvider } from '@tamagui/core';
 import { AppButton } from '../com/button/AppButton';
-import { Image } from 'tamagui';
+// import { Image } from 'tamagui';
 import fonts from 'mobile/constant/font';
+import { Image } from 'react-native-svg';
+import { AppInput } from '../com/input/AppInput';
 
 export default function Companyscreen() {
   const opacity = useRef(new Animated.Value(0)).current;
@@ -29,7 +31,7 @@ export default function Companyscreen() {
   }, []);
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <View style={styles.container}>
+    <View style={styles.container}>
         <StatusBar
           translucent
           backgroundColor="transparent"
@@ -134,8 +136,10 @@ export default function Companyscreen() {
             </Text>
           </Animated.View>
         </View>
-      </View>
+      </View> 
     </TamaguiProvider>
+
+
   );
 }
 const styles = StyleSheet.create({
@@ -249,3 +253,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+

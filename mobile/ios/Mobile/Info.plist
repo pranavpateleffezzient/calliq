@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>NSContactsUsageDescription</key>
+<string>This app needs access to contacts to make calls</string>
+<key>NSCameraUsageDescription</key>
+<string>This app needs camera access for video calls</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>This app needs microphone access for calls</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
