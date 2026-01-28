@@ -1,4 +1,5 @@
 {
   "name": "Mobile",
-  "displayName": "Mobile"
+  "displayName": "Mobile",
+  "newArchEnabled": false
 }

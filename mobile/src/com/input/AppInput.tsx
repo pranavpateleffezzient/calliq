@@ -119,11 +119,11 @@ export const AppInput = forwardRef<any, AppInputProps>((props, ref) => {
     
     switch (state) {
       case 'success':
-        return <CheckCircle color="$green6" size="$1" />
+        return <CheckCircle color="$green6" size="$3" />
       case 'error':
-        return <AlertCircle color="$red6" size="$1" />
+        return <AlertCircle color="$red6" size="$3" />
       case 'warning':
-        return <AlertCircle color="$orange6" size="$1" />
+        return <AlertCircle color="$orange6" size="$3" />
       default:
         return null
     }

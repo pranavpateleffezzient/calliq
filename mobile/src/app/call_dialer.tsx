@@ -44,7 +44,7 @@ const call_dialer = () => {
             buttonNeutral: 'Ask Me Later',
             buttonNegative: 'Cancel',
             buttonPositive: 'OK',
-          }
+          },
         );
         return granted === PermissionsAndroid.RESULTS.GRANTED;
       } catch (err) {
@@ -56,56 +56,59 @@ const call_dialer = () => {
       return result === RESULTS.GRANTED;
     }
   };
-
+const sanitizeNumber = (num) => {
+  if (!num) return '';
+  return num.replace(/[^0-9+]/g, '');
+};
   // Make phone call
-  const makeCall = async () => {
-    if (!phoneNumber.trim()) {
-      Alert.alert('Error', 'Please enter a phone number');
-      return;
-    }
+const makeCall = async (numberToCall = phoneNumber) => {
+  const sanitized = sanitizeNumber(numberToCall);
 
-    const hasPermission = await checkPermissions();
-    if (!hasPermission) {
-      Alert.alert(
-        'Permission Required',
-        'Please grant phone call permissions in settings'
-      );
-      return;
-    }
+  console.log('RAW:', numberToCall);
+  console.log('SANITIZED:', sanitized);
 
-    const args = {
-      number: phoneNumber,
-      prompt: true, // Shows system dialer prompt on iOS
-      skipCanOpen: true,
-    };
+  if (!sanitized) {
+    Alert.alert('Invalid number', 'Please enter a valid phone number');
+    return;
+  }
 
-    try {
-      await RNPhoneCall.call(args).catch(console.error);
-      
-      // Add to call logs
-      const newCall = {
+  const args = {
+    number: sanitized,
+    prompt: true,
+  };
+
+  try {
+    await RNPhoneCall.call(args);
+
+    setCallLogs((prev) => [
+      {
         id: Date.now().toString(),
-        number: phoneNumber,
+        number: sanitized,
         timestamp: new Date().toLocaleString(),
         type: 'outgoing',
-      };
-      
-      setCallLogs(prev => [newCall, ...prev.slice(0, 9)]);
-    } catch (error) {
-      Alert.alert('Error', 'Failed to make call: ' + error.message);
-    }
-  };
+      },
+      ...prev.slice(0, 9),
+    ]);
+  } catch (e) {
+    Alert.alert('Call failed', e.message);
+  }
+};
+
 
   // Handle dial pad press
   const handlePress = (value) => {
-    if (value === 'call') {
+    if (value === 'call') 
+      { if (/[#*]/.test(phoneNumber)) {
+    Alert.alert('Invalid number', 'Remove * or # before calling');
+    return;
+  }
       makeCall();
     } else if (value === 'backspace') {
-      setPhoneNumber(prev => prev.slice(0, -1));
+      setPhoneNumber((prev) => prev.slice(0, -1));
     } else if (value === '+') {
-      setPhoneNumber(prev => prev + '+');
+      setPhoneNumber((prev) => prev + '+');
     } else {
-      setPhoneNumber(prev => prev + value);
+      setPhoneNumber((prev) => prev + value);
     }
   };
 
@@ -119,9 +122,7 @@ const call_dialer = () => {
       delayLongPress={500}
     >
       <Text style={styles.dialButtonText}>{item}</Text>
-      {item === '0' && (
-        <Text style={styles.plusText}>+</Text>
-      )}
+      {item === '0' && <Text style={styles.plusText}>+</Text>}
     </TouchableOpacity>
   );
 
@@ -129,16 +130,15 @@ const call_dialer = () => {
   const renderSpecialButton = (item) => (
     <TouchableOpacity
       key={item.value}
-      style={[
-        styles.specialButton,
-        item.value === 'call' && styles.callButton,
-      ]}
+      style={[styles.specialButton, item.value === 'call' && styles.callButton]}
       onPress={() => handlePress(item.value)}
     >
-      <Text style={[
-        styles.specialButtonText,
-        item.value === 'call' && styles.callButtonText,
-      ]}>
+      <Text
+        style={[
+          styles.specialButtonText,
+          item.value === 'call' && styles.callButtonText,
+        ]}
+      >
         {item.label}
       </Text>
     </TouchableOpacity>
@@ -153,10 +153,7 @@ const call_dialer = () => {
       </View>
       <TouchableOpacity
         style={styles.callAgainButton}
-        onPress={() => {
-          setPhoneNumber(item.number);
-          setTimeout(() => makeCall(), 300);
-        }}
+        onPress={() => makeCall(item.number)}
       >
         <Text style={styles.callAgainText}>Call</Text>
       </TouchableOpacity>
@@ -194,7 +191,7 @@ const call_dialer = () => {
             {row.map(renderButton)}
           </View>
         ))}
-        
+
         {/* Special Buttons Row */}
         <View style={styles.specialRow}>
           {dialPadSpecial.map(renderSpecialButton)}
