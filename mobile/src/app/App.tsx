@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PlatformPressable } from '@react-navigation/elements';
-import { useLinkBuilder } from '@react-navigation/native';
 
 import SigninIcon from '../../src/assets/login-svgrepo-com.svg';
 import phone_call from '../../src/assets/phone-call.svg';
@@ -12,9 +11,11 @@ import User from '../../src/assets/user.svg';
 
 import Signin_main from './Signin_main';
 import Signup from './signup';
+import call_dialer from './call_dialer';
+import Companyscreen from './Companyscreen';
 
 const Tab = createBottomTabNavigator();
-const {height,width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 export const TAB_CONFIG = {
   Signin: {
@@ -25,18 +26,20 @@ export const TAB_CONFIG = {
     icon: phone_call,
     label: 'Sign Up',
   },
-  Home: {
+  call_dialer: {
     icon: Setting,
-    label: 'Sign In',
+    label: 'Calls',
   },
-  Profile: {
+  Companyscreen: {
     icon: User,
-    label: 'Sign Up',
+    label: 'Company',
   },
 };
 
 function MyTabBar({ state, navigation }) {
   const { colors } = useTheme();
+  const activeColor = '#007AFF'; // Blue color for active state
+  const inactiveColor = '#666'; // Gray color for inactive state
 
   return (
     <View style={styles.tabContainer}>
@@ -51,18 +54,27 @@ function MyTabBar({ state, navigation }) {
         return (
           <PlatformPressable
             key={route.key}
-            onPress={() => !isFocused && navigation.navigate(route.name)}
-            style={styles.tabItem}
+            onPress={() => navigation.navigate(route.name)}
+            style={[
+              styles.tabItem,
+              isFocused && styles.activeTabItem,
+            ]}
           >
-            <Icon
-              width={24}
-              height={24}
-              fill={isFocused ? colors.primary : '#999'}
-            />
+            <View style={[
+              styles.iconContainer,
+              isFocused && styles.activeIconContainer
+            ]}>
+              <Icon
+                width={22}
+                height={22}
+                fill={isFocused ? '#fff' : inactiveColor}
+              />
+            </View>
             <Text
               style={[
                 styles.label,
-                { color: isFocused ? colors.primary : '#999' },
+                { color: isFocused ? activeColor : inactiveColor },
+                isFocused && styles.activeLabel,
               ]}
             >
               {tab.label}
@@ -74,18 +86,19 @@ function MyTabBar({ state, navigation }) {
   );
 }
 
-
 export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{ 
+          headerShown: false,
+        }}
         tabBar={(props) => <MyTabBar {...props} />}
       >
         <Tab.Screen name="Signin" component={Signin_main} />
         <Tab.Screen name="Signup" component={Signup} />
-        <Tab.Screen name="Signin" component={Signin_main} />
-        <Tab.Screen name="Signup" component={Signup} />
+        <Tab.Screen name="call_dialer" component={call_dialer} />
+        <Tab.Screen name="Companyscreen" component={Companyscreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -94,19 +107,40 @@ export default function App() {
 const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
-    height: 60,
+    height: 75,
     backgroundColor: '#fff',
+    marginHorizontal: 16,
+    marginBottom: 20,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
     elevation: 10,
-    borderTopWidth: 0.5,
-    borderTopColor: '#ddd',
+    overflow: 'hidden',
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  activeTabItem: {
+    backgroundColor: '#007AFF',
+    borderRadius: 30,
+    margin: 4,
   },
   label: {
-    fontSize: 12,
-    marginTop: 2,
+    fontSize: 11,
+    fontWeight: '500',
+    color: '#666',
   },
+  activeLabel: {
+    color: '#fff',
+    fontWeight: '600',
+  },
+  // Update the icon fill in the component
+  // fill={isFocused ? '#fff' : inactiveColor}
 });
