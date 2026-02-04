@@ -18,7 +18,9 @@ import fonts from '../../constant/font';
 import { Animated, Easing } from 'react-native';
 import { loginApi } from '@core/api';
 import { mobileTokenStorage } from '../storage/token.storage';
+import { useToastNotification } from '../com/toast/useToastNotification';
 export default function Signin_main() {
+   const toast = useToastNotification();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const opacity = useRef(new Animated.Value(0)).current;
@@ -194,7 +196,7 @@ export default function Signin_main() {
               style={{ marginTop: 40 }}
               fontFamily={fonts.bol}
               disabled={loading}
-              onPress={handleLogin}
+              onPress={()=>toast.showSuccess('Success!', 'Operation completed successfully')}
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </AppButton>

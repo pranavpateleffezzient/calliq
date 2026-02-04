@@ -12,6 +12,8 @@
     "@tamagui/config": "^1.144.1",
     "@tamagui/core": "^1.144.1",
     "@tamagui/lucide-icons": "^1.144.1",
+    "@tamagui/toast": "^2.0.0-rc.1",
+    "burnt": "^0.12.2",
     "metro-config": "*",
     "react": "*",
     "react-native": "*",
