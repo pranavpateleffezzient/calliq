@@ -2,90 +2,91 @@
 // import { tokens } from '@tamagui/config/v3'
 import { createTamagui, createTokens } from '@tamagui/core'
 import { createAnimations } from '@tamagui/animations-react-native'
-import color from 'mobile/constant/colors';
+import colors from './constant/colors'
+import { createMedia } from '@tamagui/react-native-media-driver';
  const tokens = createTokens({
   // Color Tokens - Define ALL colors here
-  color: {
+  colors: {
     // Blue shades for primary buttons
-    primary: color.primary,     // Main primary color
-    primaryDark: color.primaryDark, // Darker for hover
-    primaryLight: color.primaryLight,// Lighter
+    primary: colors.primary,     // Main primary colors
+    primaryDark: colors.primaryDark, // Darker for hover
+    primaryLight: colors.primaryLight,// Lighter
     
     
     // Red for danger buttons
-    danger: color.danger,
-    dangerDark: color.dangerDark,
+    danger: colors.danger,
+    dangerDark: colors.dangerDark,
     
     // White and black
-    white: color.white,
-    black: color.black,
+    white: colors.white,
+    black: colors.black,
     
     // Background colors
-    background: color.background,
+    background: colors.background,
 
-    blue1:color.blue1,
-    blue2:color.blue2,
-    blue3:color.blue3,
-    blue4:color.blue4,
-    blue5:color.blue5,
-    blue6:color.blue6,
-    blue7:color.blue7,
-    blue8:color.blue8,
-    blue9:color.blue9,
-    blue10:color.blue10,
+    blue1:colors.blue1,
+    blue2:colors.blue2,
+    blue3:colors.blue3,
+    blue4:colors.blue4,
+    blue5:colors.blue5,
+    blue6:colors.blue6,
+    blue7:colors.blue7,
+    blue8:colors.blue8,
+    blue9:colors.blue9,
+    blue10:colors.blue10,
     
     
     // Gray shades
-    gray1: color.gray1,
-    gray2: color.gray2,
-    gray3: color.gray3,
-    gray4: color.gray4,
-    gray5: color.gray5,
-    gray6: color.gray6,
-    gray7: color.gray7,
-    gray8: color.gray8,
-    gray9: color.gray9,
-    gray10: color.gray10,
-    gray11: color.gray11,
-    gray12: color.gray12,
-    gray13: color.gray13,
+    gray1: colors.gray1,
+    gray2: colors.gray2,
+    gray3: colors.gray3,
+    gray4: colors.gray4,
+    gray5: colors.gray5,
+    gray6: colors.gray6,
+    gray7: colors.gray7,
+    gray8: colors.gray8,
+    gray9: colors.gray9,
+    gray10: colors.gray10,
+    gray11: colors.gray11,
+    gray12: colors.gray12,
+    gray13: colors.gray13,
     
     // Red shades
-    red1: color.red1,
-    red2: color.red2,
-    red3: color.red3,
-    red4: color.red4,
-    red5: color.red5,
-    red6: color.red6,
-    red7: color.red7,
-    red8: color.red8,
-    red9: color.red9,
-    red10: color.red10,
+    red1: colors.red1,
+    red2: colors.red2,
+    red3: colors.red3,
+    red4: colors.red4,
+    red5: colors.red5,
+    red6: colors.red6,
+    red7: colors.red7,
+    red8: colors.red8,
+    red9: colors.red9,
+    red10: colors.red10,
 
     // Green shades
-    green1: color.green1,
-    green2: color.green2,
-    green3: color.green3,
-    green4: color.green4,
-    green5: color.green5,
-    green6: color.green6,
-    green7: color.green7,
-    green8: color.green8,
-    green9: color.green9,
-    green10: color.green10,
+    green1: colors.green1,
+    green2: colors.green2,
+    green3: colors.green3,
+    green4: colors.green4,
+    green5: colors.green5,
+    green6: colors.green6,
+    green7: colors.green7,
+    green8: colors.green8,
+    green9: colors.green9,
+    green10: colors.green10,
 
     
     // Orange shades
-    orange1: color.orange1,
-    orange2: color.orange2,
-    orange3: color.orange3,
-    orange4: color.orange4,
-    orange5: color.orange5,
-    orange6: color.orange6,
-    orange7: color.orange7,
-    orange8: color.orange8,
-    orange9: color.orange9,
-    orange10: color.orange10,
+    orange1: colors.orange1,
+    orange2: colors.orange2,
+    orange3: colors.orange3,
+    orange4: colors.orange4,
+    orange5: colors.orange5,
+    orange6: colors.orange6,
+    orange7: colors.orange7,
+    orange8: colors.orange8,
+    orange9: colors.orange9,
+    orange10: colors.orange10,
 
   },
   
@@ -152,12 +153,12 @@ export const tamaguiConfig = createTamagui({
  
     themes: {
     light: {
-      bg: tokens.color.background,
-      text: tokens.color.black,
+      bg: tokens.colors.background,
+      text: tokens.colors.black,
     },
     dark: {
-      bg: tokens.color.black,
-      text: tokens.color.white,
+      bg: tokens.colors.black,
+      text: tokens.colors.white,
     },
   },
     defaultProps: {
@@ -170,7 +171,7 @@ export const tamaguiConfig = createTamagui({
     },   // When pressed
     },
   },
-  
+   
   
 })
  
@@ -187,9 +188,9 @@ export default tamaguiConfig
 // // 1. Create tokens (global variables for colors, sizes, etc.)
 // const tokens = createTokens({
 //   // Color Tokens - Define ALL colors here
-//   color: {
+//   colors: {
 //     // Blue shades for primary buttons
-//     primary: '#007AFF',     // Main primary color
+//     primary: '#007AFF',     // Main primary colors
 //     primaryDark: '#0056CC', // Darker for hover
 //     primaryLight: '#409CFF',// Lighter
     
@@ -248,12 +249,12 @@ export default tamaguiConfig
 //   // 3. Define themes (light/dark mode)
 //   themes: {
 //     light: {
-//       bg: tokens.color.background,
-//       text: tokens.color.black,
+//       bg: tokens.colors.background,
+//       text: tokens.colors.black,
 //     },
 //     dark: {
-//       bg: tokens.color.black,
-//       text: tokens.color.white,
+//       bg: tokens.colors.black,
+//       text: tokens.colors.white,
 //     },
 //   },
   

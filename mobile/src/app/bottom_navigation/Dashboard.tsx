@@ -4,16 +4,18 @@ import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PlatformPressable } from '@react-navigation/elements';
 
-import SigninIcon from '../../src/assets/login-svgrepo-com.svg';
-import phone_call from '../../src/assets/phone-call.svg';
-import Setting from '../../src/assets/settings.svg';
-import User from '../../src/assets/user.svg';
-
-import Signin_main from './Signin_main';
-import Signup from './signup';
-import call_dialer from './call_dialer';
-import Companyscreen from './Companyscreen';
+import SigninIcon from '../../assets/login-svgrepo-com.svg';
+import phone_call from '../../assets/phone-call.svg';
+import Setting from '../../assets/settings.svg';
+import User from '../../assets/user.svg';
+import Homescreen from '../bottom_navigation/Homescreen';
+import Profilescreen from '../bottom_navigation/Profilescreen';
+import call_dialer from '../bottom_navigation/Taskscreen';
+import Settingscrren from './Settingscrren';
+import Taskscreen from '../bottom_navigation/Taskscreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Signin_main from '../Signin_main';
+import From_demo from '../From_demo';
 
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get('window');
@@ -22,21 +24,17 @@ const TAB_WIDTH = (width - 32) / TAB_COUNT;
 const Stack = createNativeStackNavigator();
 
 export const TAB_CONFIG = {
-  Signin: {
+  Homescreen: {
     icon: SigninIcon,
-    label: 'Sign In',
   },
-  Signup: {
+  Taskscreen: {
     icon: phone_call,
-    label: 'Sign Up',
   },
-  call_dialer: {
+  Settingscrren: {
     icon: Setting,
-    label: 'Calls',
   },
-  Companyscreen: {
+  Profilescreen: {
     icon: User,
-    label: 'Company',
   },
 };
 
@@ -100,16 +98,6 @@ function MyTabBar({ state, navigation }) {
                     fill={isFocused ? '#007AFF' : inactiveColor}
                   />
                 </View>
-                <Text
-                  style={[
-                    styles.label,
-                    { color: isFocused ? '#007AFF' : inactiveColor },
-                    isFocused && styles.activeLabel,
-                  ]}
-                  numberOfLines={1}
-                >
-                  {tab.label}
-                </Text>
               </View>
             </PlatformPressable>
           </View>
@@ -118,22 +106,73 @@ function MyTabBar({ state, navigation }) {
     </View>
   );
 }
-
-export default function App() {
+function HomeStack() {
   return (
-    <NavigationContainer>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomescreenMain" component={Homescreen} />
+      <Stack.Screen
+        name="Signin_main"
+        component={From_demo}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ProfileStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Profilescreen" component={Profilescreen} />
+      <Stack.Screen
+        name="Signin_main"
+        component={From_demo}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SettingStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Settingscrren" component={Settingscrren} />
+      <Stack.Screen
+        name="Signin_main"
+        component={From_demo}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function TaskStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Taskscreen" component={Taskscreen} />
+      <Stack.Screen
+        name="Signin_main"
+        component={From_demo}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <View style={{ backgroundColor: '#fff', flex: 1 }}>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
         }}
         tabBar={(props) => <MyTabBar {...props} />}
       >
-        <Tab.Screen name="Signin" component={Signin_main} />
-        <Tab.Screen name="Signup" component={Signup} />
-        <Tab.Screen name="call_dialer" component={call_dialer} />
-        <Tab.Screen name="Companyscreen" component={Companyscreen} />
+        <Tab.Screen name="Homescreen" component={HomeStack} />
+        <Tab.Screen name="Profilescreen" component={ProfileStack} />
+        <Tab.Screen name="Settingscrren" component={SettingStack} />
+        <Tab.Screen name="Taskscreen" component={TaskStack} />
       </Tab.Navigator>
-    </NavigationContainer>
+    </View>
   );
 }
 
@@ -143,8 +182,8 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: '#FFFFFF',
     marginHorizontal: 16,
-    marginBottom: 20,
-    borderRadius: 24,
+    marginBottom: 10,
+    borderRadius: 50,
     borderWidth: 1,
     borderColor: '#F0F0F0',
     shadowColor: '#000',
@@ -175,7 +214,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 56,
     backgroundColor: '#F2F8FF',
-    borderRadius: 20,
+    borderRadius: 50,
     top: 7,
     left: 12,
     zIndex: 0,
@@ -183,7 +222,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 44,
     height: 44,
-    borderRadius: 22,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 4,
