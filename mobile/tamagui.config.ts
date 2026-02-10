@@ -163,7 +163,7 @@ export const tamaguiConfig = createTamagui({
   },
     defaultProps: {
     Button: {
-      borderRadius: tokens.radius.md, // Default radius
+      // borderRadius: tokens.radius.md, // Default radius
       fontWeight: '600',              // Default font weight
       pressStyle: { opacity: 0.8 },
       Text: {

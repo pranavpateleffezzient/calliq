@@ -13,10 +13,8 @@ import {
 import Svg, { G, Path } from 'react-native-svg';
 import {loginApi} from '@core/api';
 import { mobileTokenStorage } from '../storage/token.storage';
-import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
-  const navigation = useNavigation()
       const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
       const scrollViewRef = useRef<null | ScrollView>(null);
     
