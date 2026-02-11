@@ -1,7 +1,8 @@
 import { AppRegistry } from 'react-native';
 
  import * as burnt from 'burnt';
-import signup from './app/bottom_navigation/Profilescreen';
+import App from './app/bottom_navigation/App';
+// import App from './app/signup';
 
 
-AppRegistry.registerComponent('Mobile', () => signup);
+AppRegistry.registerComponent('Mobile', () => App);

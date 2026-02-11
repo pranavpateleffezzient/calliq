@@ -7,10 +7,11 @@ export const inputPresets = {
     // backgroundColor: '$gray13',
     // borderWidth: 1,
     borderColor: '$gray13',
-    color: '#000',
+  color: '$black',              // ✅ fix
+
     placeholderTextColor: '$gray4',
     // borderRadius: '$radius.2',
-    backgroundColor: '#F3F6FB',
+      backgroundColor: '$gray1',
 
 
     

@@ -108,7 +108,7 @@ export default function sigup() {
 
             <AppButton
               preset={['primary', 'medium', 'rounded']}
-              style={{ marginTop: 40 }}
+              // style={{ marginTop: 40 }}
               fontFamily={fonts.bol}
             >
               Sign up
