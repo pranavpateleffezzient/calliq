@@ -7,6 +7,7 @@ import {
   Dimensions,
   Alert,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import { AppInput } from '../com/input/AppInput';
 const { width, height } = Dimensions.get('window');
@@ -109,8 +110,12 @@ export default function Signin_main() {
 
   return (
     <TamaguiProvider config={tamaguiConfig}>
-      <View style={styles.container}>
-        <StatusBar
+      {/* <View style={styles.container}> */}
+      <KeyboardAvoidingView                             
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+<StatusBar
           translucent
           backgroundColor="transparent"
           barStyle="light-content"
@@ -268,7 +273,9 @@ export default function Signin_main() {
             </ScrollView>
           </Animated.View>
         </View>
-      </View>
+    </KeyboardAvoidingView>
+        
+      {/* </View> */}
     </TamaguiProvider>
   );
 }
@@ -322,7 +329,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 10,
     flexDirection: 'column',
   },
 
