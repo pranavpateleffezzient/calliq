@@ -103,11 +103,12 @@ export const CustomInput = styled(TamaguiInput, {
     // VARIANT 5: Disabled state
     disabled: {
       true: {
-        backgroundColor: '$gray1',
-        borderColor: '$gray2',
-        color: '$gray7',
-        opacity: 0.6,
-        pointerEvents: 'none',
+        backgroundColor: '$gray2',
+    borderColor: '$gray4',
+    color: '$gray7',
+    placeholderTextColor: '$gray5',
+    opacity: 0.6,
+    pointerEvents: 'none',
       },
     },
   },

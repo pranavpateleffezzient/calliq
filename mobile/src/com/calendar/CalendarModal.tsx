@@ -132,7 +132,7 @@
 // //   const { width } = useWindowDimensions();
 // //   const modalHeight = width * 1.18;
 // //   const calendarHeight = width * 0.6;
-  
+
 // //   return (
 // //     <Modal visible={visible} transparent animationType="slide">
 // //       <View style={styles.overlay}>
@@ -239,21 +239,21 @@
 // //   const { width } = useWindowDimensions();
 // //   const modalHeight = width * 1.18;
 // //   const calendarHeight = width * 0.6;
-  
+
 // //   // Reset key when modal opens to force re-render
 // //   const [modalKey, setModalKey] = React.useState(0);
-  
+
 // //   useEffect(() => {
 // //     if (visible) {
 // //       // Increment key to force re-render with fresh data
 // //       setModalKey(prev => prev + 1);
 // //     }
 // //   }, [visible]);
-  
+
 // //   return (
-// //     <Modal 
-// //       visible={visible} 
-// //       transparent 
+// //     <Modal
+// //       visible={visible}
+// //       transparent
 // //       animationType="slide"
 // //       onRequestClose={onClose}
 // //     >
@@ -383,9 +383,9 @@
 //   };
 
 //   return (
-//     <Modal 
-//       visible={visible} 
-//       transparent 
+//     <Modal
+//       visible={visible}
+//       transparent
 //       animationType="slide"
 //       onRequestClose={handleClosePress}
 //     >
@@ -490,14 +490,14 @@ export default function CalendarModal({
   const [localSelectedDates, setLocalSelectedDates] = useState(selectedDates);
   const [modalVisible, setModalVisible] = useState(visible);
 
-   useEffect(() => {
+  useEffect(() => {
     if (visible) {
       setModalVisible(true);
-      
+
       // Reset animation values
       fadeAnim.setValue(0);
       slideAnim.setValue(height);
-      
+
       // Run animations
       Animated.parallel([
         Animated.timing(fadeAnim, {
@@ -561,31 +561,31 @@ export default function CalendarModal({
     return null;
   }
   return (
-    <Modal 
-      visible={visible} 
-      transparent 
+    <Modal
+      visible={visible}
+      transparent
       animationType="fade"
       onRequestClose={handleClosePress}
     >
-       <Animated.View 
+      <Animated.View
         style={[
           styles.overlay,
           {
             opacity: fadeAnim,
-          }
+          },
         ]}
       >
-        <Animated.View 
+        <Animated.View
           style={[
-            styles.container, 
-            { 
+            styles.container,
+            {
               height: modalHeight,
               transform: [
                 {
                   translateY: slideAnim,
                 },
               ],
-            }
+            },
           ]}
         >
           <View style={[styles.calendarSection, { height: calendarHeight }]}>
@@ -598,7 +598,6 @@ export default function CalendarModal({
             />
           </View>
 
-       
           <View style={styles.buttonSection}>
             <View style={styles.buttonContainer}>
               {closeButtonVisble && (
@@ -626,7 +625,7 @@ export default function CalendarModal({
               )}
             </View>
           </View>
-      {/* <View style={styles.overlay}>
+          {/* <View style={styles.overlay}>
         <View style={[styles.container, { height: modalHeight }]}>
       
           <View style={[styles.calendarSection, { height: calendarHeight }]}>
@@ -669,7 +668,7 @@ export default function CalendarModal({
           </View>
         </View>
       </View> */}
-      </Animated.View>
+        </Animated.View>
       </Animated.View>
     </Modal>
   );
@@ -690,13 +689,13 @@ const styles = StyleSheet.create({
     // Remove justifyContent: 'space-between' and use flex column
     flexDirection: 'column',
     shadowColor: colors.black,
-                  shadowOffset: {
-                    width: 2,
-                    height: 5,
-                  },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 3.84,
-                  elevation: 10,
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 10,
   },
   calendarSection: {
     width: '100%',

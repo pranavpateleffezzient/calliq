@@ -411,7 +411,7 @@
 // };
 
 // components/ui/Menu/index.tsx
-import { CheckCircle, CircleArrowRight } from '@tamagui/lucide-icons';
+import { CheckCircle } from '@tamagui/lucide-icons';
 import colors from 'mobile/constant/colors';
 import React, {
   createContext,

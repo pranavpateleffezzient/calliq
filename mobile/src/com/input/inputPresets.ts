@@ -9,7 +9,7 @@ export const inputPresets = {
     borderColor: '$gray13',
   color: '$black',              // ✅ fix
 
-    placeholderTextColor: '$gray4',
+    placeholderTextColor: '$gray5',
     // borderRadius: '$radius.2',
       backgroundColor: '$gray1',
 
@@ -131,12 +131,14 @@ export const inputPresets = {
   
   // PRESET 8: Disabled Input
   disabled: {
-    backgroundColor: '$gray1',
+    true: {
+        backgroundColor: '$gray1',
     borderColor: '$gray2',
     color: '$gray7',
     placeholderTextColor: '$gray5',
     opacity: 0.6,
     pointerEvents: 'none',
+      },
   },
   
   // PRESET 9: Large Input

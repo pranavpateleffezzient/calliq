@@ -1,4 +1,11 @@
-import { View, Text, FlatList, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React, { memo, useEffect, useState } from 'react';
 import { TamaguiProvider } from '@tamagui/core';
 import tamaguiConfig from 'mobile/tamagui.config';
@@ -10,6 +17,7 @@ import { Bell, CalendarDays } from '@tamagui/lucide-icons';
 import moment from 'moment';
 import CalendarModal from '../com/calendar/CalendarModal';
 import { Ionicons } from '@expo/vector-icons';
+import Header from '../com/Header';
 // export default function Dashboard() {
 //   const calllist_row = [
 //     {
@@ -99,8 +107,6 @@ import { Ionicons } from '@expo/vector-icons';
 //   //   setFilteredCallList(firstFour);
 //   // }, []);
 
-
-
 // //    const filter = async (type?: string) => {
 // //     const today = moment().format('YYYY-MM-DD');
 // //     const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
@@ -131,7 +137,7 @@ import { Ionicons } from '@expo/vector-icons';
 // //       setOpen(true);
 // //       setTempSelectedDates({}); // Reset temporary selection
 // //     }
-    
+
 // //     setItemSelect(type);
 // //   };
 
@@ -161,7 +167,7 @@ import { Ionicons } from '@expo/vector-icons';
 // //    const handleApply = () => {
 // //     // Get the selected date from tempSelectedDates
 // //     const selectedDateKey = Object.keys(tempSelectedDates)[0];
-    
+
 // //     if (selectedDateKey) {
 // //       const filteredlist = calllist_row.filter((item) => {
 // //         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
@@ -170,7 +176,7 @@ import { Ionicons } from '@expo/vector-icons';
 // //       setCallList(filteredlist);
 // //       setSelectedCalendarDates(tempSelectedDates); // Save selection
 // //     }
-    
+
 // //     setOpen(false); // Close modal
 // //   };
 
@@ -184,8 +190,6 @@ import { Ionicons } from '@expo/vector-icons';
 // //     };
 // //     setTempSelectedDates(newSelected);
 // //   };
-
-
 
 //   const filter = async (type?: string) => {
 //     const today = moment().format('YYYY-MM-DD');
@@ -218,7 +222,7 @@ import { Ionicons } from '@expo/vector-icons';
 //       // Set temporary selection to the previously selected dates
 //       setTempSelectedDates(selectedCalendarDates);
 //     }
-    
+
 //     setItemSelect(type);
 //   };
 
@@ -230,7 +234,7 @@ import { Ionicons } from '@expo/vector-icons';
 //   const handleApply = () => {
 //     // Get the selected dates from tempSelectedDates
 //     const selectedKeys = Object.keys(tempSelectedDates);
-    
+
 //     if (selectedKeys.length > 0) {
 //       if (selectedKeys.length === 1) {
 //         // Single date selected
@@ -243,18 +247,18 @@ import { Ionicons } from '@expo/vector-icons';
 //         // Range selected - filter between start and end
 //         const startDate = selectedKeys[0];
 //         const endDate = selectedKeys[selectedKeys.length - 1];
-        
+
 //         const filteredlist = calllist_row.filter((item) => {
 //           const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
 //           return itemDate >= startDate && itemDate <= endDate;
 //         });
 //         setCallList(filteredlist);
 //       }
-      
+
 //       // Save the selection
 //       setSelectedCalendarDates(tempSelectedDates);
 //     }
-    
+
 //     setOpen(false); // Close modal
 //   };
 
@@ -386,7 +390,6 @@ import { Ionicons } from '@expo/vector-icons';
 //             </Menu.Root>
 //           </View>
 
-          
 //           <View style={styles.section}>
 //             <Text style={styles.sectionTitle}>Menu on Top</Text>
 //             <Menu.Root>
@@ -410,7 +413,6 @@ import { Ionicons } from '@expo/vector-icons';
 //             </Menu.Root>
 //           </View>
 
-         
 //           <View style={styles.section}>
 //             <Text style={styles.sectionTitle}>Menu on Right</Text>
 //             <View style={styles.row}>
@@ -427,7 +429,6 @@ import { Ionicons } from '@expo/vector-icons';
 //             </View>
 //           </View>
 
-         
 //           <View style={styles.section}>
 //             <Text style={styles.sectionTitle}>Menu on Left</Text>
 //             <View style={[styles.row, { justifyContent: 'flex-end' }]}>
@@ -444,7 +445,6 @@ import { Ionicons } from '@expo/vector-icons';
 //             </View>
 //           </View>
 
-          
 //           <View style={styles.section}>
 //             <Text style={styles.sectionTitle}>Nested Submenu</Text>
 //             <Menu.Root>
@@ -455,7 +455,7 @@ import { Ionicons } from '@expo/vector-icons';
 //                 <Menu.Item onPress={() => console.log('Save')}>Save</Menu.Item>
 //                 <Menu.NestedSub
 //                   title="Export"
-               
+
 //                 >
 //                   <Menu.Item onPress={() => console.log('Export as PDF')}>
 //                     Export as PDF
@@ -474,7 +474,6 @@ import { Ionicons } from '@expo/vector-icons';
 //             </Menu.Root>
 //           </View>
 
-         
 //           <View style={styles.section}>
 //             <Text style={styles.sectionTitle}>Multiple Menus</Text>
 //             <View style={styles.multiMenuRow}>
@@ -584,7 +583,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Dashboard.js - Fix the filter logic and state management
 export default function Dashboard() {
-   const calllist_row = [
+  const calllist_row = [
     {
       id: '1',
       callType: 'Incoming',
@@ -663,75 +662,81 @@ export default function Dashboard() {
   const [itemselect, setItemSelect] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [selectedCalendarDates, setSelectedCalendarDates] = useState({});
-const MemoizedCalendarModal = memo(CalendarModal);
-//   const filter = async (type?: string) => {
-//     const today = moment().format('YYYY-MM-DD');
-//     const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+  const MemoizedCalendarModal = memo(CalendarModal);
+  //   const filter = async (type?: string) => {
+  //     const today = moment().format('YYYY-MM-DD');
+  //     const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
 
-//     let filteredlist = [];
+  //     let filteredlist = [];
 
-//     if (type === 'today') {
-//       filteredlist = calllist_row.filter((item) => {
-//         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
-//         return itemDate === today;
-//       });
-//       setCallList(filteredlist);
-//     } else if (type === 'yesterday') {
-//       filteredlist = calllist_row.filter((item) => {
-//         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
-//         return itemDate === yesterday;
-//       });
-//       setCallList(filteredlist);
-//     } else if (type === 'week') {
-//       const weekAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
-//       filteredlist = calllist_row.filter((item) => {
-//         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
-//         return itemDate >= weekAgo && itemDate <= today;
-//       });
-//       setCallList(filteredlist);
-//     } else if (type === 'custom') {
-//       setOpen(true);
-//     }
-    
-//     setItemSelect(type);
-//   };
+  //     if (type === 'today') {
+  //       filteredlist = calllist_row.filter((item) => {
+  //         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
+  //         return itemDate === today;
+  //       });
+  //       setCallList(filteredlist);
+  //     } else if (type === 'yesterday') {
+  //       filteredlist = calllist_row.filter((item) => {
+  //         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
+  //         return itemDate === yesterday;
+  //       });
+  //       setCallList(filteredlist);
+  //     } else if (type === 'week') {
+  //       const weekAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
+  //       filteredlist = calllist_row.filter((item) => {
+  //         const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
+  //         return itemDate >= weekAgo && itemDate <= today;
+  //       });
+  //       setCallList(filteredlist);
+  //     } else if (type === 'custom') {
+  //       setOpen(true);
+  //     }
 
-// In your Dashboard component
-const filter = async (type?: string) => {
-  // Move these calculations outside or memoize them
-  if (type === 'custom') {
-    setOpen(true);
+  //     setItemSelect(type);
+  //   };
+
+  // In your Dashboard component
+  const filter = async (type?: string) => {
+    // Move these calculations outside or memoize them
+    if (type === 'custom') {
+      setOpen(true);
+      setItemSelect(type);
+      return; // Return early to avoid unnecessary calculations
+    }
+
+    // Only do these calculations for non-custom filters
+    const today = moment().format('YYYY-MM-DD');
+    const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+
+    let filteredlist = [];
+
+    if (type === 'today') {
+      filteredlist = calllist_row.filter((item) => {
+        const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format(
+          'YYYY-MM-DD',
+        );
+        return itemDate === today;
+      });
+    } else if (type === 'yesterday') {
+      filteredlist = calllist_row.filter((item) => {
+        const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format(
+          'YYYY-MM-DD',
+        );
+        return itemDate === yesterday;
+      });
+    } else if (type === 'week') {
+      const weekAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
+      filteredlist = calllist_row.filter((item) => {
+        const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format(
+          'YYYY-MM-DD',
+        );
+        return itemDate >= weekAgo && itemDate <= today;
+      });
+    }
+
+    setCallList(filteredlist);
     setItemSelect(type);
-    return; // Return early to avoid unnecessary calculations
-  }
-
-  // Only do these calculations for non-custom filters
-  const today = moment().format('YYYY-MM-DD');
-  const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
-
-  let filteredlist = [];
-
-  if (type === 'today') {
-    filteredlist = calllist_row.filter((item) => {
-      const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
-      return itemDate === today;
-    });
-  } else if (type === 'yesterday') {
-    filteredlist = calllist_row.filter((item) => {
-      const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
-      return itemDate === yesterday;
-    });
-  } else if (type === 'week') {
-    const weekAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
-    filteredlist = calllist_row.filter((item) => {
-      const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
-      return itemDate >= weekAgo && itemDate <= today;
-    });
-  }
-
-  setCallList(filteredlist);
-  setItemSelect(type);
-};
+  };
   const handleDateChange = (selectedDates) => {
     // Just update the local state in modal, don't filter yet
     console.log('Selected dates:', selectedDates);
@@ -739,34 +744,40 @@ const filter = async (type?: string) => {
 
   const handleApply = (selectedDates) => {
     const selectedKeys = Object.keys(selectedDates);
-    
+
     if (selectedKeys.length > 0) {
       if (selectedKeys.length === 1) {
         // Single date selected
         const filteredlist = calllist_row.filter((item) => {
-          const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
+          const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format(
+            'YYYY-MM-DD',
+          );
           return itemDate === selectedKeys[0];
         });
         setCallList(filteredlist);
         setItemSelect('custom');
       } else {
         // Range selected - need to sort dates
-        const sortedKeys = selectedKeys.sort((a, b) => moment(a).diff(moment(b)));
+        const sortedKeys = selectedKeys.sort((a, b) =>
+          moment(a).diff(moment(b)),
+        );
         const startDate = sortedKeys[0];
         const endDate = sortedKeys[sortedKeys.length - 1];
-        
+
         const filteredlist = calllist_row.filter((item) => {
-          const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format('YYYY-MM-DD');
+          const itemDate = moment(item.dateTime, 'YYYY-MM-DD HH:mm A').format(
+            'YYYY-MM-DD',
+          );
           return itemDate >= startDate && itemDate <= endDate;
         });
         setCallList(filteredlist);
         setItemSelect('custom');
       }
-      
+
       // Save the selection
       setSelectedCalendarDates(selectedDates);
     }
-    
+
     setOpen(false);
   };
 
@@ -789,13 +800,11 @@ const filter = async (type?: string) => {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <SafeAreaProvider>
-        <ScrollView style={styles.container}>
-          <Text style={styles.title}>Menu Examples</Text>
-          <TouchableOpacity onPress={()=> setOpen(true)}>
-            <Text style={styles.sectionTitle}>Dialog</Text>
-          </TouchableOpacity>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Basic Menu</Text>
+        <Header
+          title="Home"
+          // leftIcon={<Icon name="arrow-back" size={24} color="#000" />}
+          onLeftPress={() => alert('Back pressed!')}
+          rightComponent={
             <Menu.Root>
               <Menu.Trigger style={styles.menuTrigger}>
                 <Text>Open Menu</Text>
@@ -852,6 +861,16 @@ const filter = async (type?: string) => {
                 </Menu.Item>
               </Menu.Content>
             </Menu.Root>
+          }
+        />
+
+        <ScrollView style={styles.container}>
+          <Text style={styles.title}>Menu Examples</Text>
+          <TouchableOpacity onPress={() => setOpen(true)}>
+            <Text style={styles.sectionTitle}>Dialog</Text>
+          </TouchableOpacity>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Basic Menu</Text>
           </View>
 
           <View>
@@ -873,8 +892,7 @@ const filter = async (type?: string) => {
             selectedDates={selectedCalendarDates}
             closeButtonVisble={true}
             applyButtonVisible={true}
-            maxDate={moment().format('YYYY-MM-DD')} 
-            
+            maxDate={moment().format('YYYY-MM-DD')}
           />
         </ScrollView>
       </SafeAreaProvider>

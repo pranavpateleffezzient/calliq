@@ -6,6 +6,7 @@ import {
   StatusBar,
   Dimensions,
   Alert,
+  ScrollView,
 } from 'react-native';
 import { AppInput } from '../com/input/AppInput';
 const { width, height } = Dimensions.get('window');
@@ -20,7 +21,7 @@ import { loginApi } from '@core/api';
 import { mobileTokenStorage } from '../storage/token.storage';
 import { useToastNotification } from '../com/toast/useToastNotification';
 export default function Signin_main() {
-   const toast = useToastNotification();
+  const toast = useToastNotification();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const opacity = useRef(new Animated.Value(0)).current;
@@ -143,6 +144,7 @@ export default function Signin_main() {
         </View>
 
         {/* White Card */}
+
         <View style={styles.card}>
           <Animated.View
             style={{
@@ -150,75 +152,120 @@ export default function Signin_main() {
               opacity,
             }}
           >
-            <Text style={styles.welcome}>Welcome Back</Text>
-            <Text style={styles.subText}>
-              Hello there, sign in to continue!
-            </Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View style={{ flexDirection: 'column' }}>
+                <Text style={styles.welcome}>Welcome Back</Text>
+                <Text style={styles.subText}>
+                  Hello there, sign in to continue!
+                </Text>
 
-            <AppInput
-              preset={['default', 'fullWidth']}
-              placeholder="Enter your username or email"
-              marginTop={'$2'}
-              paddingHorizontal={'$4'}
-              fontSize={15}
-              label="Username or email"
-              required
-              fontFamily={fonts.reg}
-              value={username}
-              onChangeText={(text) => {
-                setUsername(text);
-                setErrors((prev) => ({ ...prev, username: undefined }));
-              }}
-              error={errors.username}
-              success={success.username}
-            />
-
-            <AppInput
-              preset={['default', 'fullWidth']}
-              placeholder="Enter your password"
-              marginTop={'$2'}
-              paddingHorizontal={'$4'}
-              fontSize={15}
-              label="Password"
-              required
-              isPassword
-              value={password}
-              onChangeText={(text) => {
-                setPassword(text);
-                setErrors((prev) => ({ ...prev, password: undefined }));
-              }}
-              error={errors.password}
-              success={success.password}
-            />
-
-            <AppButton
-              preset={['primary', 'medium', 'rounded']}
-              style={{ marginTop: 40 }}
-              fontFamily={fonts.bol}
-              disabled={loading}
-              onPress={()=>toast.showSuccess('Success!', 'Operation completed successfully')}
-            >
-              {loading ? 'Signing in...' : 'Sign in'}
-            </AppButton>
-            <AppButton
-              preset={['outline', 'medium', 'rounded']}
-              style={{ marginTop: 10 }}
-              fontFamily={fonts.bol}
-              icon={
-                <Image
-                  source={require('../assets/google.png')}
-                  style={{ width: 18, height: 18 }}
-                  resizeMode="contain"
+                <AppInput
+                  preset={['default', 'fullWidth']}
+                  placeholder="Enter your username or email"
+                  marginTop={'$2'}
+                  paddingHorizontal={'$4'}
+                  fontSize={15}
+                  label="Username or email"
+                  required
+                  fontFamily={fonts.reg}
+                  value={username}
+                  onChangeText={(text) => {
+                    setUsername(text);
+                    setErrors((prev) => ({ ...prev, username: undefined }));
+                  }}
+                  error={errors.username}
+                  success={success.username}
                 />
-              }
-            >
-              Google Sign in
-            </AppButton>
 
-            {/* Footer */}
-            <Text style={styles.footerText} fontFamily={fonts.reg}>
-              Don’t have an account? <Text style={styles.signup}>Sign up</Text>
-            </Text>
+                <AppInput
+                  preset={['default', 'fullWidth']}
+                  placeholder="Enter your password"
+                  marginTop={'$2'}
+                  paddingHorizontal={'$4'}
+                  fontSize={15}
+                  label="Password"
+                  required
+                  isPassword
+                  value={password}
+                  onChangeText={(text) => {
+                    setPassword(text);
+                    setErrors((prev) => ({ ...prev, password: undefined }));
+                  }}
+                  error={errors.password}
+                  success={success.password}
+                />
+
+                <AppInput
+                  preset={['default', 'fullWidth']}
+                  placeholder="Enter your password"
+                  marginTop={'$2'}
+                  paddingHorizontal={'$4'}
+                  fontSize={15}
+                  label="Password"
+                  required
+                  isPassword
+                  value={password}
+                  onChangeText={(text) => {
+                    setPassword(text);
+                    setErrors((prev) => ({ ...prev, password: undefined }));
+                  }}
+                  error={errors.password}
+                  success={success.password}
+                />
+                <AppInput
+                  preset={['default', 'fullWidth']}
+                  placeholder="Enter your password"
+                  marginTop={'$2'}
+                  paddingHorizontal={'$4'}
+                  fontSize={15}
+                  label="Password"
+                  required
+                  isPassword
+                  value={password}
+                  onChangeText={(text) => {
+                    setPassword(text);
+                    setErrors((prev) => ({ ...prev, password: undefined }));
+                  }}
+                  error={errors.password}
+                  success={success.password}
+                />
+
+                <AppButton
+                  preset={['primary', 'medium', 'rounded']}
+                  style={{ marginTop: 40 }}
+                  fontFamily={fonts.bol}
+                  disabled={loading}
+                  onPress={() =>
+                    toast.showSuccess(
+                      'Success!',
+                      'Operation completed successfully',
+                    )
+                  }
+                >
+                  {loading ? 'Signing in...' : 'Sign in'}
+                </AppButton>
+                <AppButton
+                  preset={['outline', 'medium', 'rounded']}
+                  style={{ marginTop: 10 }}
+                  fontFamily={fonts.bol}
+                  icon={
+                    <Image
+                      source={require('../assets/google.png')}
+                      style={{ width: 18, height: 18 }}
+                      resizeMode="contain"
+                    />
+                  }
+                >
+                  Google Sign in
+                </AppButton>
+
+                {/* Footer */}
+                <Text style={styles.footerText} fontFamily={fonts.reg}>
+                  Don’t have an account?{' '}
+                  <Text style={styles.signup}>Sign up</Text>
+                </Text>
+              </View>
+            </ScrollView>
           </Animated.View>
         </View>
       </View>
@@ -276,6 +323,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     padding: 24,
+    flexDirection: 'column',
   },
 
   welcome: {
