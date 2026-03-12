@@ -8,6 +8,8 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { AppInput } from '../com/input/AppInput';
 const { width, height } = Dimensions.get('window');
@@ -35,7 +37,16 @@ export default function Signin_main() {
     password?: string;
   }>({});
   const [loading, setLoading] = useState(false);
+const [keyboardVisible, setKeyboardVisible] = useState(false);
+useEffect(() => {
+  const showSub = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true));
+  const hideSub = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false));
 
+  return () => {
+    showSub.remove();
+    hideSub.remove();
+  };
+}, []);
   const validateForm = () => {
     let newErrors: any = {};
     let newSuccess: any = {};
@@ -111,11 +122,14 @@ export default function Signin_main() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       {/* <View style={styles.container}> */}
-      <KeyboardAvoidingView                             
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior="padding"                          
+      enabled={Platform.OS === 'ios'} 
     >
-<StatusBar
+      <View style={styles.container}>
+
+        <StatusBar
           translucent
           backgroundColor="transparent"
           barStyle="light-content"
@@ -157,7 +171,10 @@ export default function Signin_main() {
               opacity,
             }}
           >
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}   keyboardShouldPersistTaps="handled"
+                keyboardDismissMode="none"
+                 contentContainerStyle={{ paddingBottom: keyboardVisible ? width*0.5 : 0 }} 
+                >
               <View style={{ flexDirection: 'column' }}>
                 <Text style={styles.welcome}>Welcome Back</Text>
                 <Text style={styles.subText}>
@@ -206,7 +223,7 @@ export default function Signin_main() {
                   marginTop={'$2'}
                   paddingHorizontal={'$4'}
                   fontSize={15}
-                  label="Password"
+                  label="Password1"
                   required
                   isPassword
                   value={password}
@@ -223,7 +240,7 @@ export default function Signin_main() {
                   marginTop={'$2'}
                   paddingHorizontal={'$4'}
                   fontSize={15}
-                  label="Password"
+                  label="Password2"
                   required
                   isPassword
                   value={password}
@@ -273,8 +290,9 @@ export default function Signin_main() {
             </ScrollView>
           </Animated.View>
         </View>
-    </KeyboardAvoidingView>
-        
+        </View>
+      </KeyboardAvoidingView>
+
       {/* </View> */}
     </TamaguiProvider>
   );
