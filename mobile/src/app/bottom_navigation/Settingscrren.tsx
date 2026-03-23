@@ -28,6 +28,7 @@ import ModalHeader from 'mobile/src/com/dialog/ModalHeader';
 import { TamaguiProvider } from '@tamagui/core';
 import tamaguiConfig from 'mobile/tamagui.config';
 import { AppButton } from 'mobile/src/com/button/AppButton';
+import { BlurView } from '@react-native-community/blur';
 
 const Settingscreen = () => {
   const [showAlert, setShowAlert] = useState(false);
@@ -65,6 +66,14 @@ const Settingscreen = () => {
         >
           <Text style={styles.outlineButtonText}>Show Custom Modal</Text>
         </TouchableOpacity>
+
+        {showAlert && (
+          <BlurView
+            style={StyleSheet.absoluteFill}
+            blurType='light'
+            blurAmount={10}
+          />
+        )}
 
         {/* Alert Modal */}
         <CustomModal
