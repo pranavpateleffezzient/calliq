@@ -1,3 +1,5 @@
+import { Paperclip } from '@tamagui/lucide-icons';
+import colors from 'mobile/constant/colors';
 import React, { useRef, useState } from 'react';
 import {
   View,
@@ -12,6 +14,8 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
+import { TamaguiProvider } from 'tamagui';
+import tamaguiConfig from '../../tamagui.config';
 
 // ─────────────────────────────────────────────
 //  DUMMY DATA  (replace with real data later)
@@ -19,12 +23,48 @@ import {
 const MY_ID = 'user_1';
 
 const DUMMY_MESSAGES = [
-  { id: '1', senderId: 'user_2', text: 'Hey! How are you doing? 👋', timestamp: '10:00 AM', status: 'read' },
-  { id: '2', senderId: 'user_1', text: 'I am great! Just working on a new project 🚀', timestamp: '10:01 AM', status: 'read' },
-  { id: '3', senderId: 'user_2', text: 'That sounds exciting! What kind of project?', timestamp: '10:02 AM', status: 'read' },
-  { id: '4', senderId: 'user_1', text: 'A chat app in React Native 😄', timestamp: '10:03 AM', status: 'read' },
-  { id: '5', senderId: 'user_2', text: 'Oh wow! That is so cool. Let me know if you need any help with it!', timestamp: '10:05 AM', status: 'read' },
-  { id: '6', senderId: 'user_1', text: 'Thanks a lot! Will do 🙏', timestamp: '10:06 AM', status: 'delivered' },
+  {
+    id: '1',
+    senderId: 'user_2',
+    text: 'Hey! How are you doing? 👋',
+    timestamp: '10:00 AM',
+    status: 'read',
+  },
+  {
+    id: '2',
+    senderId: 'user_1',
+    text: 'I am great! Just working on a new project 🚀',
+    timestamp: '10:01 AM',
+    status: 'read',
+  },
+  {
+    id: '3',
+    senderId: 'user_2',
+    text: 'That sounds exciting! What kind of project?',
+    timestamp: '10:02 AM',
+    status: 'read',
+  },
+  {
+    id: '4',
+    senderId: 'user_1',
+    text: 'A chat app in React Native 😄',
+    timestamp: '10:03 AM',
+    status: 'read',
+  },
+  {
+    id: '5',
+    senderId: 'user_2',
+    text: 'Oh wow! That is so cool. Let me know if you need any help with it!',
+    timestamp: '10:05 AM',
+    status: 'read',
+  },
+  {
+    id: '6',
+    senderId: 'user_1',
+    text: 'Thanks a lot! Will do 🙏',
+    timestamp: '10:06 AM',
+    status: 'delivered',
+  },
 ];
 
 // ─────────────────────────────────────────────
@@ -72,21 +112,33 @@ const MessageBubble = ({ message }) => {
     if (!isMe) return null;
     if (status === 'sent') return <Text style={styles.tick}>✓</Text>;
     if (status === 'delivered') return <Text style={styles.tick}>✓✓</Text>;
-    if (status === 'read') return <Text style={[styles.tick, styles.tickRead]}>✓✓</Text>;
+    if (status === 'read')
+      return <Text style={[styles.tick, styles.tickRead]}>✓✓</Text>;
     return null;
   };
 
   return (
-    <View style={[styles.bubbleRow, isMe ? styles.bubbleRowRight : styles.bubbleRowLeft]}>
-      <View style={[
-        styles.bubble,
-        isMe ? styles.myBubble : styles.theirBubble,
-      ]}>
-        <Text style={[styles.bubbleText, isMe ? styles.myText : styles.theirText]}>
+    <View
+      style={[
+        styles.bubbleRow,
+        isMe ? styles.bubbleRowRight : styles.bubbleRowLeft,
+      ]}
+    >
+      <View
+        style={[styles.bubble, isMe ? styles.myBubble : styles.theirBubble]}
+      >
+        <Text
+          style={[styles.bubbleText, isMe ? styles.myText : styles.theirText]}
+        >
           {message.text}
         </Text>
         <View style={styles.bubbleMeta}>
-          <Text style={[styles.timestamp, isMe ? styles.myTimestamp : styles.theirTimestamp]}>
+          <Text
+            style={[
+              styles.timestamp,
+              isMe ? styles.myTimestamp : styles.theirTimestamp,
+            ]}
+          >
             {message.timestamp}
           </Text>
           {getStatus(message.status)}
@@ -103,36 +155,35 @@ const InputBar = ({ value, onChangeText, onSend }) => {
   const isEmpty = value.trim().length === 0;
 
   return (
-    <View style={styles.inputBar}>
-      {/* Attachment Button */}
-      <TouchableOpacity style={styles.attachBtn}>
-        <Text style={styles.attachIcon}>📎</Text>
-      </TouchableOpacity>
+    <View style={{flexDirection:'row'}}>
+      <View style={styles.inputBar}>
+        {/* Attachment Button */}
+        <TouchableOpacity style={styles.attachBtn}>
+          {/* <Text style={styles.attachIcon}>📎</Text> */}
+          <Paperclip size={24} color={colors.primary} />
+        </TouchableOpacity>
 
-      {/* Text Input */}
-      <TextInput
-        style={styles.input}
-        value={value}
-        onChangeText={onChangeText}
-        placeholder="Type a message..."
-        placeholderTextColor="#A0A0A0"
-        multiline
-        maxLength={500}
-      />
-
-      {/* Emoji Button */}
-      <TouchableOpacity style={styles.emojiBtn}>
-        <Text style={styles.emojiIcon}>😊</Text>
-      </TouchableOpacity>
-
-      {/* Send Button */}
-      <TouchableOpacity
-        style={[styles.sendBtn, isEmpty && styles.sendBtnDisabled]}
-        onPress={onSend}
-        disabled={isEmpty}
-      >
-        <Text style={styles.sendIcon}>➤</Text>
-      </TouchableOpacity>
+        {/* Text Input */}
+        <TextInput
+          style={styles.input}
+          value={value}
+          onChangeText={onChangeText}
+          placeholder="Type a message..."
+          placeholderTextColor="#A0A0A0"
+          multiline
+          maxLength={500}
+        />
+  <TouchableOpacity
+          style={[styles.sendBtn, isEmpty && styles.sendBtnDisabled]}
+          onPress={onSend}
+          disabled={isEmpty}
+        >
+          <Text style={styles.sendIcon}>➤</Text>
+        </TouchableOpacity>
+     
+       
+      </View>
+     
     </View>
   );
 };
@@ -150,15 +201,18 @@ const ChatScreen = ({ navigation }) => {
     if (inputText.trim().length === 0) return;
 
     const newMessage = {
-      id: Date.now().toString(),       // temp ID
+      id: Date.now().toString(), // temp ID
       senderId: MY_ID,
       text: inputText.trim(),
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      timestamp: new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
       status: 'sent',
     };
 
-    setMessages(prev => [...prev, newMessage]);  // add to bottom
-    setInputText('');                            // clear input
+    setMessages((prev) => [...prev, newMessage]); // add to bottom
+    setInputText(''); // clear input
 
     // Scroll to bottom after new message
     setTimeout(() => {
@@ -172,42 +226,44 @@ const ChatScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+    <TamaguiProvider config={tamaguiConfig}>
+      <SafeAreaView style={styles.safeArea}>
+        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-      {/* PART 1 — HEADER */}
-      <ChatHeader
-        name="Priya Sharma"
-        avatar="https://i.pravatar.cc/100?img=47"
-        isOnline={true}
-        onBack={() => navigation?.goBack()}
-      />
-
-      {/* PART 2 — MESSAGE LIST + INPUT wrapped in KeyboardAvoidingView */}
-      <KeyboardAvoidingView
-        style={styles.flex}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
-      >
-        {/* MESSAGE LIST */}
-        <FlatList
-          ref={flatListRef}
-          data={messages}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <MessageBubble message={item} />}
-          contentContainerStyle={styles.messageList}
-          showsVerticalScrollIndicator={false}
-          onLayout={handleLayout}
+        {/* PART 1 — HEADER */}
+        <ChatHeader
+          name="Priya Sharma"
+          avatar="https://i.pravatar.cc/100?img=47"
+          isOnline={true}
+          onBack={() => navigation?.goBack()}
         />
 
-        {/* PART 3 — INPUT BAR */}
-        <InputBar
-          value={inputText}
-          onChangeText={setInputText}
-          onSend={handleSend}
-        />
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+        {/* PART 2 — MESSAGE LIST + INPUT wrapped in KeyboardAvoidingView */}
+        <KeyboardAvoidingView
+          style={styles.flex}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
+        >
+          {/* MESSAGE LIST */}
+          <FlatList
+            ref={flatListRef}
+            data={messages}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <MessageBubble message={item} />}
+            contentContainerStyle={styles.messageList}
+            showsVerticalScrollIndicator={false}
+            onLayout={handleLayout}
+          />
+
+          {/* PART 3 — INPUT BAR */}
+          <InputBar
+            value={inputText}
+            onChangeText={setInputText}
+            onSend={handleSend}
+          />
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </TamaguiProvider>
   );
 };
 
@@ -215,8 +271,8 @@ const ChatScreen = ({ navigation }) => {
 //  STYLES
 // ─────────────────────────────────────────────
 const COLORS = {
-  primary: '#0084FF',       // my bubble color (blue)
-  primaryLight: '#E7F3FF',  // light version
+  primary: '#0084FF', // my bubble color (blue)
+  primaryLight: '#E7F3FF', // light version
   surface: '#FFFFFF',
   background: '#F5F7FA',
   border: '#E8ECF0',
@@ -230,7 +286,6 @@ const COLORS = {
 };
 
 const styles = StyleSheet.create({
-
   // ── Layout ──────────────────────────────
   safeArea: {
     flex: 1,
@@ -238,7 +293,7 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: colors.white,
   },
 
   // ── Header ──────────────────────────────
@@ -315,6 +370,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingTop: 12,
     paddingBottom: 8,
+    backgroundColor: colors.white,
   },
 
   // ── Bubble ───────────────────────────────
@@ -323,10 +379,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   bubbleRowLeft: {
-    justifyContent: 'flex-start',   // other person → left side
+    justifyContent: 'flex-start', // other person → left side
   },
   bubbleRowRight: {
-    justifyContent: 'flex-end',     // me → right side
+    justifyContent: 'flex-end', // me → right side
   },
   bubble: {
     maxWidth: '75%',
@@ -341,11 +397,11 @@ const styles = StyleSheet.create({
   },
   myBubble: {
     backgroundColor: COLORS.myBubble,
-    borderBottomRightRadius: 4,     // the "tail" corner
+    borderBottomRightRadius: 4, // the "tail" corner
   },
   theirBubble: {
     backgroundColor: COLORS.theirBubble,
-    borderBottomLeftRadius: 4,      // the "tail" corner
+    borderBottomLeftRadius: 4, // the "tail" corner
     borderWidth: 1,
     borderColor: COLORS.border,
   },
@@ -387,33 +443,35 @@ const styles = StyleSheet.create({
   inputBar: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    backgroundColor: COLORS.surface,
+    backgroundColor: '#fff',
     paddingHorizontal: 10,
     paddingVertical: 8,
-    borderTopWidth: 1,
-    borderTopColor: COLORS.border,
+    elevation: 20,
     gap: 6,
+    margin: 10,
+    borderRadius: 100,
+    flex:1
   },
   attachBtn: {
-    padding: 6,
+    padding: 4,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
   },
   attachIcon: {
     fontSize: 20,
   },
   input: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: colors.gray3,
     borderRadius: 22,
     paddingHorizontal: 16,
     paddingTop: 10,
     paddingBottom: 10,
     fontSize: 15,
     color: COLORS.textDark,
-    maxHeight: 100,           // multiline grows up to this
-    borderWidth: 1,
-    borderColor: COLORS.border,
+    maxHeight: 100, // multiline grows up to this
+    // borderWidth: 1,
+    // borderColor: colors.black,
   },
   emojiBtn: {
     padding: 6,
@@ -426,10 +484,13 @@ const styles = StyleSheet.create({
   sendBtn: {
     width: 42,
     height: 42,
-    borderRadius: 21,
-    backgroundColor: COLORS.primary,
+    borderRadius: 50,
+    backgroundColor: colors.primary,
     justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
+    // elevation:20,
+    // marginRight:10
   },
   sendBtnDisabled: {
     backgroundColor: COLORS.border,
